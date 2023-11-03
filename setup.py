@@ -29,7 +29,7 @@ def replace_strings(files, replacements):
 def main():
     project_name = ""
     while not project_name.strip():
-        project_name = input("What is the name of your project?\n>>> ")
+        project_name = input("What is the name of your repository?\n>>> ")
     project_name = project_name.strip().replace(" ", "-").lower()
     proper_name = " ".join(project_name.split("-"))
     proper_name = proper_name[0].upper() + proper_name[1:]

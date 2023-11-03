@@ -1,7 +1,7 @@
 {
   "name": "react-skeleton",
   "version": "0.1.0",
-  "homepage": "https://your-username.github.io",
+  "homepage": "https://adamjanicki2.github.io/react-skeleton",
   "private": true,
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
@@ -16,8 +16,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "pre-deploy": "npm run build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
