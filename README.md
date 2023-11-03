@@ -6,7 +6,7 @@ A super simple template repo for static React projects.
 
 ## Action items
 
-1. Clone this repo
+1. Clone this repo, or use the "Use this template" button to create a new repo
 2. Run `npm install`
 3. Run `npm start`
 4. Open http://localhost:3000 in your browser
