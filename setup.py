@@ -40,7 +40,10 @@ def main():
         ("React skeleton", proper_name),
     ]
     replace_strings(files, replacements)
+    os.system("npm install")
+    print("\n========================================\n")
     print("Done!")
+    print("Run `npm start` to start the development server.")
 
 
 if __name__ == "__main__":
