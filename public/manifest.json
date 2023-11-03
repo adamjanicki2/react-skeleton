@@ -1,6 +1,5 @@
 {
-  "short_name": "React skeleton",
-  "name": "Simple React skeleton",
+  "name": "React skeleton",
   "icons": [
     {
       "src": "favicon.ico",
