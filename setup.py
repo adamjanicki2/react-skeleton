@@ -3,6 +3,13 @@ import os
 
 extensions = ".tsx", ".ts", ".json", ".html"
 
+def success(message):
+    print(f"\033[92m{message}\033[0m")
+
+
+def info(message):
+    print(f"\033[96m{message}\033[0m")
+
 
 def find_files():
     files = []
@@ -42,10 +49,14 @@ def main():
         ("React Skeleton", project_name),
     ]
     replace_strings(files, replacements)
+    success("Autoreplaced strings in files!")
+    print("Installing npm dependencies...")
     os.system("npm install")
-    print("\n========================================\n")
-    print("Done!")
-    print("Run `npm start` to start the development server.")
+    success("Installed npm dependencies!")
+    print("Cleaning up...")
+    os.remove(__file__)
+    success("Finished setting up!")
+    info("Run `npm start` to start the development server.")
 
 
 if __name__ == "__main__":
