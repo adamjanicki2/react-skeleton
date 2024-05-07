@@ -23,7 +23,7 @@ const Nav = () => {
       <nav className="flex items-center justify-between w-100 nav pv2 ph4">
         <div className="flex items-center justify-between bar-container">
           <Link className="nav-title" to="/" unstyled>
-            Skeleton
+            React Skeleton
           </Link>
           <div className="mobile">
             <Hamburger
