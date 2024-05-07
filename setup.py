@@ -2,6 +2,7 @@ import os
 
 
 extensions = ".tsx", ".ts", ".json", ".html"
+ignore_files = ("Footer.tsx",)
 
 def success(message):
     print(f"\033[92m{message}\033[0m")
@@ -17,7 +18,7 @@ def find_files():
         if "node_modules" in root:
             continue
         for filename in filenames:
-            if filename.endswith(extensions):
+            if filename.endswith(extensions) and not filename.endswith(ignore_files):
                 files.append(os.path.join(root, filename))
     return files
 

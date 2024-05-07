@@ -8,7 +8,7 @@ const Footer = () => (
         rel="noreferrer"
         href="https://github.com/adamjanicki2/react-skeleton"
       >
-        react skeleton
+        React Skeleton
       </a>
       , built by Adam
     </p>
