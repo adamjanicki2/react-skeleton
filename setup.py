@@ -16,7 +16,7 @@ def find_files():
 
 
 def replace_strings(files, replacements):
-    for file in files:
+    for file in files:            
         with open(file, "r+") as f:
             content = f.read()
             for cur, sub in replacements:
@@ -27,17 +27,19 @@ def replace_strings(files, replacements):
 
 
 def main():
+    repo_name = ""
+    while not repo_name:
+        repo_name = input("What is the name of your repository?\n(e.g. react-skeleton)\n>>> ").strip().replace(" ", "-").lower()
+
     project_name = ""
-    while not project_name.strip():
-        project_name = input("What is the name of your repository?\n>>> ")
-    project_name = project_name.strip().replace(" ", "-").lower()
-    proper_name = " ".join(project_name.split("-"))
-    proper_name = proper_name[0].upper() + proper_name[1:]
-    print(f"Setting up {proper_name}...")
+    while not project_name:
+        project_name = input("What is the name of your project?\n(e.g. React Skeleton)\n>>> ").strip()
+
+    print(f"Setting up {project_name}...")
     files = find_files()
     replacements = [
-        ("react-skeleton", project_name),
-        ("React skeleton", proper_name),
+        ("react-skeleton", repo_name),
+        ("React Skeleton", project_name),
     ]
     replace_strings(files, replacements)
     os.system("npm install")

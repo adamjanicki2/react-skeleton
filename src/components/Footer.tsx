@@ -1,6 +1,17 @@
 const Footer = () => (
   <footer className="pa5 flex bt b--moon-gray bw1 items-center justify-center w-100">
-    <p className="fw5 f5">Cloned from React Skeleton, built by Adam</p>
+    <p className="fw5 f5">
+      Created from{" "}
+      <a
+        className="link"
+        target="_blank"
+        rel="noreferrer"
+        href="https://github.com/adamjanicki2/react-skeleton"
+      >
+        react skeleton
+      </a>
+      , built by Adam
+    </p>
   </footer>
 );
 
