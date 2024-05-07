@@ -19,9 +19,9 @@ code {
   padding: 0 0.25rem;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+.page-title-text {
+  font-size: calc(2.5rem + 1vw);
+  font-weight: 700;
 }
 
 .bordering {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Turn as Hamburger } from "hamburger-react";
 import "src/components/nav.css";
+import Link from "src/components/basic/Link";
 
 type NavlinkProps = {
   to: string;
@@ -11,24 +12,19 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);
 
-  const Navlink = ({ to, children }: NavlinkProps) => (
+  const Navlink = (props: NavlinkProps) => (
     <li className="navlink-li">
-      <a className="navlink" href={to} onClick={closeMenu}>
-        <span>{children}</span>
-      </a>
+      <Link unstyled className="navlink" onClick={closeMenu} {...props} />
     </li>
   );
 
   return (
     <>
-      <nav
-        className={`flex items-center justify-between w-100 bg-near-black white nav pv2 ph4`}
-        id="nav"
-      >
+      <nav className="flex items-center justify-between w-100 nav pv2 ph4">
         <div className="flex items-center justify-between bar-container">
-          <a className="nav-title" href="#home">
-            React skeleton
-          </a>
+          <Link className="nav-title" to="/" unstyled>
+            Skeleton
+          </Link>
           <div className="mobile">
             <Hamburger
               toggled={open}
@@ -40,10 +36,11 @@ const Nav = () => {
           </div>
         </div>
         <ul
-          className={`flex items-center desktop link-container`}
+          className="flex items-center desktop link-container ma0"
           style={{ display: open ? "flex" : undefined }}
         >
-          <Navlink to="#home">Home</Navlink>
+          <Navlink to="/">Home</Navlink>
+          <Navlink to="/about/">About</Navlink>
         </ul>
       </nav>
       <div className="nav-padding" />
