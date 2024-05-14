@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Turn as Hamburger } from "hamburger-react";
 import "src/components/nav.css";
 import Link from "src/components/basic/Link";
+import { useLocation } from "react-router-dom";
 
 type NavlinkProps = {
   to: string;
@@ -9,8 +10,13 @@ type NavlinkProps = {
 };
 
 const Nav = () => {
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);
+
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
 
   const Navlink = (props: NavlinkProps) => (
     <li className="navlink-li">
