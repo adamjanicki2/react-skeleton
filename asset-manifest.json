@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/react-skeleton/static/css/main.b05078d5.css",
-    "main.js": "/react-skeleton/static/js/main.479c1615.js",
+    "main.css": "/react-skeleton/static/css/main.759a0ddf.css",
+    "main.js": "/react-skeleton/static/js/main.06f806e6.js",
     "index.html": "/react-skeleton/index.html"
   },
   "entrypoints": [
-    "static/css/main.b05078d5.css",
-    "static/js/main.479c1615.js"
+    "static/css/main.759a0ddf.css",
+    "static/js/main.06f806e6.js"
   ]
 }
