@@ -1,5 +1,5 @@
 import PageWrapper from "src/components/PageWrapper";
-import Link from "src/components/basic/Link";
+import Link from "src/components/Link";
 
 const NotFound = () => (
   <PageWrapper title="404">

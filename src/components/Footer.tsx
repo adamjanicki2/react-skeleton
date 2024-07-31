@@ -1,15 +1,18 @@
+import { Link } from "@adamjanicki/ui";
+
 const Footer = () => (
   <footer className="pa5 flex bt b--moon-gray bw1 items-center justify-center w-100">
     <p className="fw5 f5">
       Created from{" "}
-      <a
-        className="link"
+      <Link
         target="_blank"
         rel="noreferrer"
-        href="https://github.com/adamjanicki2/react-skeleton"
+        className="link"
+        to="https://github.com/adamjanicki2/react-skeleton"
+        // eslint-disable-next-line
       >
         React Skeleton
-      </a>
+      </Link>
       , built by Adam
     </p>
   </footer>
