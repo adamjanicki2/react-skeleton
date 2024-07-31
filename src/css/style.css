@@ -2,10 +2,6 @@
   --breakpoint: 768px;
 }
 
-a:focus:not(:focus-visible) {
-  outline: none;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
