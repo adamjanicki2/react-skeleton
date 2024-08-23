@@ -1,6 +1,6 @@
 import PageWrapper from "src/components/PageWrapper";
 
-const Home = () => (
+const About = () => (
   <PageWrapper title="About">
     <p className="tc f4 fw4">
       This is an example page. You can edit this page in{" "}
@@ -9,4 +9,4 @@ const Home = () => (
   </PageWrapper>
 );
 
-export default Home;
+export default About;
