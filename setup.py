@@ -42,12 +42,17 @@ def main():
     project_name = ""
     while not project_name:
         project_name = input("What is the name of your project?\n(e.g. React Skeleton)\n>>> ").strip()
+    
+    description = ""
+    while not description:
+        description = input("What is the description of your project?\n>>> ").strip()
 
     print(f"Setting up {project_name}...")
     files = find_files()
     replacements = [
         ("react-skeleton", repo_name),
         ("React Skeleton", project_name),
+        ("Site built from React skeleton", description)
     ]
     replace_strings(files, replacements)
     success("Autoreplaced strings in files!")
