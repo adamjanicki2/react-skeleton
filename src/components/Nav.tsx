@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Turn as Hamburger } from "hamburger-react";
+import { TripleFade as Hamburger } from "@adamjanicki/ui";
 import "src/components/nav.css";
 import Link, { UnstyledLink } from "src/components/Link";
 import { useLocation } from "react-router-dom";
@@ -31,13 +31,7 @@ const Nav = () => {
           React Skeleton
         </UnstyledLink>
         <div className="mobile">
-          <Hamburger
-            toggled={open}
-            onToggle={() => setOpen(!open)}
-            direction="left"
-            size={24}
-            duration={0.3}
-          />
+          <Hamburger open={open} onClick={() => setOpen(!open)} />
         </div>
       </div>
       <ul
