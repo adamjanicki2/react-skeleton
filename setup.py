@@ -34,6 +34,10 @@ def replace_strings(files, replacements):
             f.truncate()
 
 
+def replace_readme(project_name, description):
+    with open("README.md", "w") as f:
+        f.write(f"# {project_name}\n\n{description}")
+
 def main():
     repo_name = ""
     while not repo_name:
@@ -48,6 +52,7 @@ def main():
         description = input("What is the description of your project?\n>>> ").strip()
 
     print(f"Setting up {project_name}...")
+    replace_readme(project_name, description)
     files = find_files()
     replacements = [
         ("react-skeleton", repo_name),
