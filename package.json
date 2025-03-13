@@ -4,7 +4,7 @@
   "homepage": "https://adamjanicki.xyz/react-skeleton",
   "private": true,
   "dependencies": {
-    "@adamjanicki/ui": "^1.5.0",
+    "@adamjanicki/ui": "^1.5.4",
     "react": ">=18",
     "react-dom": ">=18",
     "react-router": "^7.1.5",

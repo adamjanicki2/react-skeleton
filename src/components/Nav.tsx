@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { TripleFade as Hamburger } from "@adamjanicki/ui";
-import "src/components/nav.css";
-import Link, { UnstyledLink } from "src/components/Link";
 import { useLocation } from "react-router";
+import { TripleFade as Hamburger } from "@adamjanicki/ui";
+import Link, { UnstyledLink } from "src/components/Link";
+import { ReactComponent as Logo } from "src/components/logo.svg";
+import "src/components/nav.css";
 
 type NavlinkProps = {
   to: string;
@@ -27,8 +28,9 @@ const Nav = () => {
   return (
     <nav className="flex items-center justify-between w-100 nav pv2 ph4">
       <div className="flex items-center justify-between bar-container">
-        <UnstyledLink className="nav-title" to="/">
-          React Skeleton
+        <UnstyledLink className="flex" to="/">
+          <Logo width="24" height="24" className="mr2" />
+          <span className="nav-title desktop">React Skeleton</span>
         </UnstyledLink>
         <div className="mobile">
           <Hamburger open={open} onClick={() => setOpen(!open)} />
