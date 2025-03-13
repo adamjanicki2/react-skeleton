@@ -60,16 +60,25 @@ def main():
     while not description:
         description = input("What is the description of your project?\n>>> ").strip()
 
-    print(f"Setting up {project_name}...")
-    replace_readme(project_name, description)
-    files = find_files()
+    gh_username = input(
+        "What is your GitHub username? (leave blank if Adam)\n>>> "
+    ).strip()
+
     replacements = [
         ("react-skeleton", repo_name),
         ("React Skeleton", project_name),
-        ("Site built from React skeleton", description)(
-            "Est. 2023", f"Est. {datetime.now().year}"
-        ),
+        ("Site built from React skeleton", description),
+        ("Est. 2023", f"Est. {datetime.now().year}"),
     ]
+    if gh_username:
+        replacements.append(
+            (': "https://adamjanicki.xyz', f': "https://{gh_username}.github.io')
+        )
+
+    print(f"Setting up {project_name}...")
+    replace_readme(project_name, description)
+    files = find_files()
+
     replace_strings(files, replacements)
     success("Autoreplaced strings in files!")
     print("Installing npm dependencies...")
