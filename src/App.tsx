@@ -5,7 +5,7 @@ import About from "src/pages/About";
 import Home from "src/pages/Home";
 import NotFound from "src/pages/NotFound";
 
-const App = () => {
+export default function App() {
   return (
     <BrowserRouter basename="/react-skeleton">
       <Nav />
@@ -18,6 +18,4 @@ const App = () => {
       <Footer />
     </BrowserRouter>
   );
-};
-
-export default App;
+}

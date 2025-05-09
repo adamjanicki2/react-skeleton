@@ -1,6 +1,6 @@
 import { useDocumentTitle } from "src/hooks";
 
-const Home = () => {
+export default function Home() {
   useDocumentTitle("Home");
 
   return (
@@ -18,6 +18,4 @@ const Home = () => {
       </p>
     </div>
   );
-};
-
-export default Home;
+}

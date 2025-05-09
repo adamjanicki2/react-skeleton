@@ -10,7 +10,7 @@ type NavlinkProps = {
   children: React.ReactNode;
 };
 
-const Nav = () => {
+export default function Nav() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);
@@ -45,6 +45,4 @@ const Nav = () => {
       </ul>
     </nav>
   );
-};
-
-export default Nav;
+}
