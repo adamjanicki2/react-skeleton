@@ -8,12 +8,12 @@ type Props = {
   titleClass?: string;
 };
 
-const PageWrapper = ({
+export default function PageWrapper({
   children,
   title,
   documentTitle,
   titleClass = "",
-}: Props) => {
+}: Props) {
   useDocumentTitle(`${documentTitle ?? title}`);
 
   return (
@@ -25,6 +25,4 @@ const PageWrapper = ({
       {children}
     </div>
   );
-};
-
-export default PageWrapper;
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { TripleFade as Hamburger } from "@adamjanicki/ui";
 import Link, { UnstyledLink } from "src/components/Link";
-import { ReactComponent as Logo } from "src/components/logo.svg";
+import Logo from "src/components/logo.svg?react";
 import "src/components/nav.css";
 
 type NavlinkProps = {
@@ -10,7 +10,7 @@ type NavlinkProps = {
   children: React.ReactNode;
 };
 
-const Nav = () => {
+export default function Nav() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);
@@ -45,6 +45,4 @@ const Nav = () => {
       </ul>
     </nav>
   );
-};
-
-export default Nav;
+}
