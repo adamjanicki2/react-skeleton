@@ -1,11 +1,13 @@
+import { Box } from "@adamjanicki/ui";
 import { useDocumentTitle } from "src/hooks";
 
 export default function Home() {
   useDocumentTitle("Home");
 
   return (
-    <div
-      className="flex flex-column items-center pv4"
+    <Box
+      layout={{ axis: "y", align: "center" }}
+      className="pv4"
       style={{ minHeight: "60vh" }}
     >
       <h1 className="page-title-text">React Skeleton</h1>
@@ -16,6 +18,6 @@ export default function Home() {
         places where you should make your own changes if you really want to do
         it manually
       </p>
-    </div>
+    </Box>
   );
 }

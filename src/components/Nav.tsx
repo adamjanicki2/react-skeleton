@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { TripleFade as Hamburger } from "@adamjanicki/ui";
+import { Box, TripleFade as Hamburger } from "@adamjanicki/ui";
 import Link, { UnstyledLink } from "src/components/Link";
 import Logo from "src/components/logo.svg?react";
 import "src/components/nav.css";
@@ -27,15 +27,18 @@ export default function Nav() {
 
   return (
     <nav className="flex items-center justify-between w-100 nav pv2 ph4">
-      <div className="flex items-center justify-between bar-container">
+      <Box
+        layout={{ axis: "x", align: "center", justify: "between" }}
+        className="bar-container"
+      >
         <UnstyledLink className="flex" to="/">
           <Logo width="24" height="24" className="mr2" />
           <span className="nav-title desktop">React Skeleton</span>
         </UnstyledLink>
-        <div className="mobile">
+        <Box className="mobile">
           <Hamburger open={open} onClick={() => setOpen(!open)} />
-        </div>
-      </div>
+        </Box>
+      </Box>
       <ul
         className="flex items-center desktop link-container ma0"
         style={{ display: open ? "flex" : undefined }}

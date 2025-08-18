@@ -1,3 +1,4 @@
+import { Box } from "@adamjanicki/ui";
 import { useDocumentTitle } from "src/hooks";
 import type { Children } from "src/types";
 
@@ -17,12 +18,13 @@ export default function PageWrapper({
   useDocumentTitle(`${documentTitle ?? title}`);
 
   return (
-    <div
-      className="flex flex-column items-center w-100 pb3"
+    <Box
+      layout={{ axis: "y", align: "center" }}
+      className="w-100 pb3"
       style={{ minHeight: "70vh" }}
     >
       <h1 className={`page-title-text tc ${titleClass}`}>{title}</h1>
       {children}
-    </div>
+    </Box>
   );
 }
