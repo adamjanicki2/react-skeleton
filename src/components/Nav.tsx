@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Box, TripleFade as Hamburger } from "@adamjanicki/ui";
+import { Box, TripleFade as Hamburger, ui } from "@adamjanicki/ui";
 import Link, { UnstyledLink } from "src/components/Link";
-import Logo from "src/components/logo.svg?react";
 import "src/components/nav.css";
 
 type NavlinkProps = {
@@ -20,32 +19,34 @@ export default function Nav() {
   }, [pathname]);
 
   const Navlink = (props: NavlinkProps) => (
-    <li className="navlink-li">
-      <Link className="navlink" onClick={closeMenu} {...props} />
-    </li>
+    <Link
+      vfx={{ width: "full", fontWeight: 5, color: "default" }}
+      onClick={closeMenu}
+      {...props}
+    />
   );
 
   return (
-    <nav className="flex items-center justify-between w-100 nav pv2 ph4">
+    <ui.nav vfx={{ paddingY: "s", paddingX: "l" }}>
       <Box
-        layout={{ axis: "x", align: "center", justify: "between" }}
+        vfx={{ axis: "x", align: "center", justify: "between" }}
         className="bar-container"
       >
-        <UnstyledLink className="flex" to="/">
-          <Logo width="24" height="24" className="mr2" />
-          <span className="nav-title desktop">React Skeleton</span>
+        <UnstyledLink className="nav-title" to="/">
+          React Skeleton
         </UnstyledLink>
         <Box className="mobile">
           <Hamburger open={open} onClick={() => setOpen(!open)} />
         </Box>
       </Box>
-      <ul
-        className="flex items-center desktop link-container ma0"
-        style={{ display: open ? "flex" : undefined }}
+      <Box
+        className="desktop navlink-container"
+        // force display to be open on mobile when hamburger is toggled
+        style={open ? { display: "flex" } : undefined}
       >
         <Navlink to="/">Home</Navlink>
         <Navlink to="/about/">About</Navlink>
-      </ul>
-    </nav>
+      </Box>
+    </ui.nav>
   );
 }

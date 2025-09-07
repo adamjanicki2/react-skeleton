@@ -1,12 +1,15 @@
-import PageWrapper from "src/components/PageWrapper";
+import Page from "src/components/Page";
+import { ui } from "@adamjanicki/ui";
 
 export default function About() {
   return (
-    <PageWrapper title="About">
-      <p className="ph4 f4 fw5 dark-gray tc">
+    <Page title="About">
+      <ui.p
+        vfx={{ paddingX: "l", fontSize: "m", fontWeight: 5, color: "muted" }}
+      >
         This is an example page. You can edit this page in{" "}
-        <code>src/pages/About.tsx</code>
-      </p>
-    </PageWrapper>
+        <ui.code>src/pages/About.tsx</ui.code>
+      </ui.p>
+    </Page>
   );
 }
