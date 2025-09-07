@@ -21,6 +21,7 @@ export default function Nav() {
   const Navlink = (props: NavlinkProps) => (
     <Link
       vfx={{ width: "full", fontWeight: 5, color: "default" }}
+      style={{ whiteSpace: "nowrap" }}
       onClick={closeMenu}
       {...props}
     />
