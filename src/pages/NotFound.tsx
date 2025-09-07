@@ -6,7 +6,13 @@ export default function NotFound() {
   return (
     <Page title="404">
       <ui.p
-        vfx={{ paddingX: "l", fontSize: "m", fontWeight: 5, color: "muted" }}
+        vfx={{
+          paddingX: "l",
+          fontSize: "m",
+          fontWeight: 5,
+          color: "muted",
+          textAlign: "center",
+        }}
       >
         Oops! The requested page does not exist.
         <ui.br />

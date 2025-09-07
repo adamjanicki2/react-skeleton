@@ -5,7 +5,13 @@ export default function Home() {
   return (
     <Page title="Home">
       <ui.p
-        vfx={{ paddingX: "l", fontSize: "m", fontWeight: 5, color: "muted" }}
+        vfx={{
+          paddingX: "l",
+          fontSize: "m",
+          fontWeight: 5,
+          color: "muted",
+          textAlign: "center",
+        }}
       >
         You should run <ui.code>setup.py</ui.code> to auto-rename a bunch of
         strings.
