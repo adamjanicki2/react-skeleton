@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Box,
   TripleFade as Hamburger,
@@ -9,28 +9,13 @@ import {
 } from "@adamjanicki/ui";
 import "src/components/nav.css";
 
-type NavlinkProps = {
-  to: string;
-  children: React.ReactNode;
-};
-
 export default function Nav() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
-  const closeMenu = () => setOpen(false);
 
   useEffect(() => {
-    closeMenu();
+    setOpen(false);
   }, [pathname]);
-
-  const Navlink = (props: NavlinkProps) => (
-    <Link
-      vfx={{ width: "full", fontWeight: 5, color: "default" }}
-      style={{ whiteSpace: "nowrap" }}
-      onClick={closeMenu}
-      {...props}
-    />
-  );
 
   return (
     <ui.nav vfx={{ paddingY: "s", paddingX: "l" }}>
@@ -42,7 +27,7 @@ export default function Nav() {
           React Skeleton
         </UnstyledLink>
         <Box className="mobile">
-          <Hamburger open={open} onClick={() => setOpen(!open)} />
+          <Hamburger open={open} onClick={() => setOpen((prev) => !prev)} />
         </Box>
       </Box>
       <Box
@@ -50,9 +35,27 @@ export default function Nav() {
         // force display to be open on mobile when hamburger is toggled
         style={open ? { display: "flex" } : undefined}
       >
-        <Navlink to="/">Home</Navlink>
-        <Navlink to="/about/">About</Navlink>
+        <Navlink to="/" onClick={() => setOpen(false)}>
+          Home
+        </Navlink>
+        <Navlink to="/about/" onClick={() => setOpen(false)}>
+          About
+        </Navlink>
       </Box>
     </ui.nav>
   );
 }
+
+type NavlinkProps = {
+  to: string;
+  children: ReactNode;
+  onClick: () => void;
+};
+
+const Navlink = (props: NavlinkProps) => (
+  <Link
+    vfx={{ width: "full", fontWeight: 5, color: "default" }}
+    style={{ whiteSpace: "nowrap" }}
+    {...props}
+  />
+);
