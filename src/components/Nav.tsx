@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import { Box, TripleFade as Hamburger, ui } from "@adamjanicki/ui";
-import Link, { UnstyledLink } from "src/components/Link";
+import {
+  Box,
+  TripleFade as Hamburger,
+  ui,
+  useLocation,
+  Link,
+  UnstyledLink,
+} from "@adamjanicki/ui";
 import "src/components/nav.css";
 
 type NavlinkProps = {
