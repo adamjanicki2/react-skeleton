@@ -1,21 +1,15 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   Box,
   TripleFade as Hamburger,
   ui,
-  useLocation,
   Link,
   UnstyledLink,
 } from "@adamjanicki/ui";
 import "src/components/nav.css";
 
 export default function Nav() {
-  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <ui.nav vfx={{ paddingY: "s", paddingX: "l" }}>
@@ -23,7 +17,11 @@ export default function Nav() {
         vfx={{ axis: "x", align: "center", justify: "between" }}
         className="bar-container"
       >
-        <UnstyledLink className="nav-title" to="/">
+        <UnstyledLink
+          className="nav-title"
+          to="/"
+          onClick={() => setOpen(false)}
+        >
           React Skeleton
         </UnstyledLink>
         <Box className="mobile">
