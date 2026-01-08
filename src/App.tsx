@@ -1,4 +1,4 @@
-import { Router, Route, Routes } from "@adamjanicki/ui";
+import { Route, Router, Routes } from "@adamjanicki/ui";
 import Footer from "src/components/Footer";
 import Nav from "src/components/Nav";
 import About from "src/pages/About";
