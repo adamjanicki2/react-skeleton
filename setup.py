@@ -109,9 +109,9 @@ def main() -> None:
     ).strip()
 
     replacements = [
+        ("Site built from React skeleton", description),
         ("react-skeleton", repo_name),
         ("React Skeleton", project_name),
-        ("Site built from React skeleton", description),
         ("2023", f"{datetime.now().year}"),
     ]
 
