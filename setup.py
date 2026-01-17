@@ -1,64 +1,105 @@
-import os
+import shutil
+import subprocess
 from datetime import datetime
-
-extensions = ".tsx", ".ts", ".json", ".html"
-ignore_files = ("Footer.tsx",)
+from pathlib import Path
 
 
-def success(message):
+EXTENSIONS = {".tsx", ".ts", ".json", ".html"}
+IGNORE_DIRS = {
+    "node_modules",
+    ".git",
+    "build",
+}
+
+
+def success(message: str) -> None:
     print(f"\033[92m{message}\033[0m")
 
 
-def info(message):
+def info(message: str) -> None:
     print(f"\033[96m{message}\033[0m")
 
 
-def find_files():
+def warn(message: str) -> None:
+    print(f"\033[93m{message}\033[0m")
+
+
+def prompt(label: str, transform=None) -> str:
+    value = ""
+    while not value:
+        value = input(label).strip()
+        if transform:
+            value = transform(value)
+    return value
+
+
+def iter_target_files(root: Path) -> list:
     files = []
-    for root, dirs, filenames in os.walk("."):
-        if "node_modules" in root:
+    for path in root.rglob("*"):
+        if not path.is_file():
             continue
-        for filename in filenames:
-            if filename.endswith(extensions) and not filename.endswith(ignore_files):
-                files.append(os.path.join(root, filename))
+        if any(part in IGNORE_DIRS for part in path.parts):
+            continue
+        if path.suffix not in EXTENSIONS:
+            continue
+        files.append(path)
     return files
 
 
-def replace_strings(files, replacements):
+def replace_in_file(path: Path, replacements: list) -> bool:
+    original = path.read_text(encoding="utf-8")
+
+    updated = original
+    for cur, sub in replacements:
+        updated = updated.replace(cur, sub)
+
+    if updated == original:
+        return False
+
+    path.write_text(updated, encoding="utf-8")
+    return True
+
+
+def replace_strings(files: list, replacements: list) -> None:
+    changed = 0
     for file in files:
-        with open(file, "r+") as f:
-            content = f.read()
-            for cur, sub in replacements:
-                content = content.replace(cur, sub)
-            f.seek(0)
-            f.write(content)
-            f.truncate()
+        if replace_in_file(file, replacements):
+            changed += 1
+    success(f"Autoreplaced strings in {changed} file(s)!")
 
 
-def replace_readme(project_name, description):
-    with open("README.md", "w") as f:
-        f.write(f"# {project_name}\n\n{description}")
+def replace_readme(project_name: str, description: str) -> None:
+    Path("README.md").write_text(
+        f"# {project_name}\n\n{description}\n", encoding="utf-8"
+    )
 
 
-def main():
-    repo_name = ""
-    while not repo_name:
-        repo_name = (
-            input("What is the name of your repository?\n(e.g. react-skeleton)\n>>> ")
-            .strip()
-            .replace(" ", "-")
-            .lower()
-        )
+def npm_install() -> None:
+    npm = shutil.which("npm")
+    print("Installing npm dependencies...")
+    subprocess.run([npm, "install"], check=True)
+    success("Installed npm dependencies!")
 
-    project_name = ""
-    while not project_name:
-        project_name = input(
-            "What is the name of your project?\n(e.g. React Skeleton)\n>>> "
-        ).strip()
 
-    description = ""
-    while not description:
-        description = input("What is the description of your project?\n>>> ").strip()
+def self_delete(script_path: Path) -> None:
+    script_path.unlink()
+    success("Finished setting up!")
+
+
+def main() -> None:
+    root = Path(".").resolve()
+    script_path = Path(__file__).resolve()
+
+    repo_name = prompt(
+        "What is the name of your repository?\n(e.g. react-skeleton)\n>>> ",
+        normalize=lambda s: s.replace(" ", "-").lower(),
+    )
+
+    project_name = prompt(
+        "What is the name of your project?\n(e.g. React Skeleton)\n>>> "
+    )
+
+    description = prompt("What is the description of your project?\n>>> ")
 
     gh_username = input(
         "What is your GitHub username? (leave blank if Adam)\n>>> "
@@ -68,26 +109,27 @@ def main():
         ("react-skeleton", repo_name),
         ("React Skeleton", project_name),
         ("Site built from React skeleton", description),
-        ("Est. 2023", f"Est. {datetime.now().year}"),
+        ("2023", f"{datetime.now().year}"),
     ]
+
     if gh_username:
         replacements.append(
             (': "https://adamjanicki.xyz', f': "https://{gh_username}.github.io')
         )
 
     print(f"Setting up {project_name}...")
-    replace_readme(project_name, description)
-    files = find_files()
 
+    replace_readme(project_name, description)
+
+    files = iter_target_files(root)
     replace_strings(files, replacements)
-    success("Autoreplaced strings in files!")
-    print("Installing npm dependencies...")
-    os.system("npm install")
-    success("Installed npm dependencies!")
+
+    npm_install()
+
     print("Cleaning up...")
-    os.remove(__file__)
-    success("Finished setting up!")
-    info("Run `npm start` to start the development server.")
+    self_delete(script_path)
+
+    info("Run `npm start` to start the development server")
 
 
 if __name__ == "__main__":
