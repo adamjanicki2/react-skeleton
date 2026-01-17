@@ -92,7 +92,7 @@ def main() -> None:
 
     repo_name = prompt(
         "What is the name of your repository?\n(e.g. react-skeleton)\n>>> ",
-        normalize=lambda s: s.replace(" ", "-").lower(),
+        transform=lambda s: s.replace(" ", "-").lower(),
     )
 
     project_name = prompt(
