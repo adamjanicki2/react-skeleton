@@ -1,4 +1,3 @@
-import shutil
 import subprocess
 from datetime import datetime
 from pathlib import Path
@@ -75,10 +74,13 @@ def replace_readme(project_name: str, description: str) -> None:
 
 
 def npm_install() -> None:
-    npm = shutil.which("npm")
     print("Installing npm dependencies...")
-    subprocess.run([npm, "install"], check=True)
-    subprocess.run([npm, "install", "@adamjanicki/ui@latest"])
+    subprocess.run(["npm", "install"], check=True)
+    subprocess.run(
+        ["npm", "install", "@adamjanicki/ui@latest"],
+        stdout=subprocess.DEVNULL,
+        check=True,
+    )
     success("Installed npm dependencies!")
 
 
