@@ -78,6 +78,7 @@ def npm_install() -> None:
     npm = shutil.which("npm")
     print("Installing npm dependencies...")
     subprocess.run([npm, "install"], check=True)
+    subprocess.run([npm, "install", "@adamjanicki/ui@latest"])
     success("Installed npm dependencies!")
 
 
